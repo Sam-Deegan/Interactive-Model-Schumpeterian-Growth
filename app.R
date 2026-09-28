@@ -664,7 +664,7 @@ B_03_13_debounce_ms_int <- 250L
 ###### B_03_14: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_14_version_chr <- "1.0.6"
+B_03_14_version_chr <- "1.0.7"
 
 ###### B_03_15: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -1499,40 +1499,25 @@ F_01_01_app_server_fn <- function(input, output, session) {
     tags$div(
       class = "narrative",
       tags$div(class = "nar-head", "Why the Inverted U Matters"),
-      tags$p(HTML(paste(
-        "<strong>Two schools of thought, both half right.</strong>",
-        "Schumpeter argued that the prospect of a monopoly rent is what pays",
-        "for innovation, so competition discourages it. The standard",
-        "competition case argues the opposite: rivalry is what forces firms",
-        "to improve. This model contains both arguments at once — the escape",
-        "competition effect, which rises with c, and the Schumpeterian",
-        "effect, which falls with it — and neither wins outright."
-      ))),
       tags$p(HTML(paste0(
-        "<strong>Which is why the answer is interior.</strong> Aggregate",
-        " innovation is zero at both ends and positive in between, so the",
-        " best level of competition is neither none nor all of it. Here it",
-        " is c* = √2 − 1 ≈ ", T_02_05_num_fn(d$peak_comp, 3),
-        ", and that number does not move when the cost of research, the size",
-        " of a productivity step or the rent changes: it comes from the",
-        " shape of the two effects and from nothing else."
+        "Schumpeter said monopoly rent pays for innovation, so competition",
+        " discourages it. The standard view says rivalry forces firms to",
+        " improve. The model holds both: the escape-competition effect rises",
+        " with c, the Schumpeterian effect falls with it, and aggregate",
+        " innovation is zero at both ends. The peak is at c* = &radic;2",
+        " &minus; 1 &asymp; ", T_02_05_num_fn(d$peak_comp, 3),
+        ", and it does not move with the research cost, the step size or",
+        " the rent."
       ))),
       tags$p(HTML(paste(
-        "<strong>And why the empirical debate looked unresolvable.</strong>",
-        "Studies fitting a straight line through competition and innovation",
-        "found a positive slope in some samples and a negative one in",
-        "others. On this model both were reading one side of the same hump.",
-        "Fitting the curve instead — on UK firm data, with competition",
-        "measured by the Lerner index — is what turned two contradictory",
-        "findings into one shape."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>The policy reading.</strong> The figure is an argument",
-        "against any competition policy stated as a direction. Moving",
-        "towards the peak raises innovation; moving past it lowers",
-        "innovation just as reliably, and from the outside the two look",
-        "identical. Where a country already sits on the curve decides which",
-        "way it should go, which is the question lecture 3.5 takes up."
+        "This is why the empirical literature looked contradictory.",
+        "Straight-line regressions of innovation on competition found a",
+        "positive slope in some samples and a negative one in others; each",
+        "was reading one side of the hump. Fitting the curve on UK firm",
+        "data, with competition measured by the Lerner index, reconciled",
+        "them. It also means competition policy cannot be stated as a",
+        "direction: which way to move depends on where a country already",
+        "sits, the question lecture 3.5 takes up."
       )))
     )
   })
@@ -1544,30 +1529,19 @@ F_01_01_app_server_fn <- function(input, output, session) {
       class = "narrative",
       tags$div(class = "nar-head", "Two Predictions About Firms"),
       tags$p(HTML(paste0(
-        "<strong>Turnover at the top.</strong> A leader is displaced at the",
-        " rate laggards innovate, so leadership of an industry lasts about ",
-        T_02_05_num_fn(d$lifespan, 1),
-        " years here. The model predicts continual churn among the leading",
-        " firms in an industry, and more of it where the prize for catching",
-        " up is larger. That is a testable claim about firm dynamics, and it",
-        " is what the data on industry leadership show."
+        "A leader is displaced at the rate laggards innovate, so industry",
+        " leadership lasts about ", T_02_05_num_fn(d$lifespan, 1),
+        " years here. The model predicts continual churn at the top, and",
+        " more of it where the prize for catching up is larger. That is",
+        " what the data on industry leadership show."
       ))),
       tags$p(HTML(paste(
-        "<strong>Entry has opposite effects on different firms.</strong>",
-        "An incumbent close to the frontier can hope to stay ahead of an",
-        "entrant, so the threat makes it innovate harder. One far behind",
-        "cannot, so the threat makes it give up: the expected rent from",
-        "trying has fallen. Averaging the two together, as a study of a",
-        "whole industry would, can find almost nothing — which is why the",
-        "prediction has to be tested by splitting firms on distance to the",
-        "frontier."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>And a warning about averages.</strong> The same logic",
-        "applies to the inverted U itself: a regression of innovation on",
-        "competition that imposes a straight line will find whichever effect",
-        "happens to dominate in the sample, and two such studies can",
-        "contradict each other while both being right."
+        "Entry works in opposite directions on different firms. An incumbent",
+        "near the frontier can hope to stay ahead of an entrant, so the",
+        "threat makes it innovate harder. One far behind cannot, so the",
+        "expected rent from trying falls and it gives up. An industry-wide",
+        "average of the two can show almost nothing, so the prediction has",
+        "to be tested by splitting firms on distance to the frontier."
       )))
     )
   })
@@ -1578,28 +1552,22 @@ F_01_01_app_server_fn <- function(input, output, session) {
       class = "narrative",
       tags$div(class = "nar-head", "Appropriate Growth Policy"),
       tags$p(HTML(paste(
-        "<strong>The argument.</strong> A country far from the frontier",
-        "grows mainly by adopting technologies that already exist elsewhere.",
-        "That favours large established firms, long-term finance and secure",
-        "rents. A country at the frontier has to invent instead, which",
-        "favours competition, entry and the selection of new firms. The",
-        "institutions that suit one do not suit the other."
+        "A country far from the frontier grows by adopting technologies that",
+        "already exist, which favours large established firms, long-term",
+        "finance and secure rents. A country at the frontier has to invent,",
+        "which favours competition, entry and the selection of new firms.",
+        "The policies that carried a country through catch-up are the ones",
+        "that hold it back once it arrives, and the constituencies they",
+        "created will defend them. Growth slowdowns in successful catch-up",
+        "economies are the standard illustration."
       ))),
       tags$p(HTML(paste(
-        "<strong>Why it is uncomfortable.</strong> The policies that carried",
-        "a country through catch-up are precisely the ones that will hold it",
-        "back once it arrives, and the constituencies those policies created",
-        "will defend them. Growth slowdowns in successful catch-up economies",
-        "are the standard illustration."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>And who becomes an innovator.</strong> The model treats",
-        "research effort as something bought with money. The evidence on",
-        "inventors suggests exposure matters as much as incentives: children",
-        "of similar early ability are far more likely to patent if they grew",
-        "up around innovation. If so, part of the growth policy question is",
-        "about who is in the pool at all, which no amount of competition",
-        "policy will reach."
+        "The model treats research effort as something bought with money.",
+        "The evidence on inventors suggests exposure matters as much as",
+        "incentives: children of similar early ability are far more likely",
+        "to patent if they grew up around innovation. Part of the growth",
+        "policy question is then about who is in the pool at all, which",
+        "competition policy does not reach."
       )))
     )
   })
