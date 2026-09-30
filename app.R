@@ -664,7 +664,7 @@ B_03_13_debounce_ms_int <- 250L
 ###### B_03_14: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_14_version_chr <- "1.0.7"
+B_03_14_version_chr <- "1.0.8"
 
 ###### B_03_15: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -754,6 +754,10 @@ D_01_01_ladder_fn <- function(par, ref = NULL) {
                                      "Average Growth" = "22")) +
     (if (mark_gap) T_02_02_mark_x_fn(gap, expression(1 / I(c)))) +
     labs(
+      title = "The Quality Ladder",
+      subtitle = paste0("Every ", T_02_05_num_fn(gap, 1),
+                        " years, each step worth ",
+                        T_02_06_pct_fn(par$gamma - 1, 0)),
       x = expression(bold("Year (" * t * ")")),
       y = expression(bold("Productivity (" * A[t] * ")")),
       caption = paste0(
@@ -833,6 +837,12 @@ D_01_02_effects_fn <- function(par, ref = NULL) {
              parse = TRUE, size = 3.2, hjust = 0, vjust = 1.5,
              colour = T_01_01_palette_vec[["muted"]]) +
     labs(
+      title = "Escape Competition and the Schumpeterian Effect",
+      subtitle = if (eff$neck > eff$laggard) {
+        "Level firms try harder than laggards"
+      } else {
+        "Laggards try harder than level firms"
+      },
       x = expression(bold("Product market competition (" * c * ")")),
       y = expression(bold("Research effort (" * n * ")")),
       caption = paste(
@@ -907,6 +917,10 @@ D_02_01_inverted_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(peak$innovation, expression(I(c^"*"))) +
     coord_cartesian(ylim = c(0, y_top)) +
     labs(
+      title = "The Inverted U of Competition and Innovation",
+      subtitle = paste0("Innovation rate ", T_02_05_num_fn(now, 3),
+                        ", growth ",
+                        T_02_06_pct_fn(C_01_05_growth_fn(par), 2)),
       x = expression(bold("Product market competition (" * c * ")")),
       y = expression(bold("Aggregate innovation rate (" * I(c) * ")")),
       caption = paste(
@@ -960,6 +974,8 @@ D_02_02_entry_fn <- function(par, ref = NULL) {
     )) +
     T_02_02_mark_x_fn(0.5, expression(d == 1 / 2)) +
     labs(
+      title = "Entry and Distance to the Frontier",
+      subtitle = "One policy, opposite effects on two kinds of incumbent",
       x = expression(bold("Distance from the frontier (" * d * ")")),
       y = expression(bold("Change in research effort (" * Delta * n * ")")),
       caption = paste(
@@ -1029,6 +1045,9 @@ D_03_01_policy_fn <- function(par, ref = NULL) {
     scale_y_continuous(labels = function(x) paste0(round(x * 100, 1), "%")) +
     T_02_02_mark_x_fn(pol$best, expression(c^"*" * (D))) +
     labs(
+      title = "Growth by Source: Inventing and Copying",
+      subtitle = paste0("A country ", T_02_06_pct_fn(par$distance, 0),
+                        " behind the frontier"),
       x = expression(bold("Product market competition (" * c * ")")),
       y = expression(bold("Growth rate (" * g * ")")),
       caption = paste(
@@ -1072,6 +1091,10 @@ D_03_02_frontier_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(here, expression(c^"*" * (D))) +
     coord_cartesian(ylim = c(0, max(c(df$best_comp, g_df$best_comp)) * 1.15)) +
     labs(
+      title = "Growth-Maximising Competition and Distance",
+      subtitle = paste0(T_02_05_num_fn(here, 2), " here, ",
+                        T_02_05_num_fn(max(df$best_comp), 2),
+                        " at the frontier"),
       x = expression(bold("Distance from the frontier (" * D * ")")),
       # Two lines, so the rotated title fits the panel height on a slide
       y = expression(atop(bold("Growth-maximising"),
